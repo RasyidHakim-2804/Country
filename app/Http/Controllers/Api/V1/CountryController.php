@@ -14,35 +14,16 @@ class CountryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $countries  = Country::paginate(25);
-        // dd($countries);
+        if ($request->has('name')) {
+
+            $name      = $request->name;
+            $countries = Country::where('name','like', "%$name%")->paginate(25);
+        } else {
+            $countries = $countries  = Country::paginate(25);
+        }
 
         return CountryResource::collection($countries);
-    }
-
-
-
-
-
-    /**
-     * for see column in database
-     */
-    public function dummy()
-    {
-        $countries = Schema::getColumnListing('countries');
-        $regions = Schema::getColumnListing('regions');
-        $states = Schema::getColumnListing('states');
-        $subregions = Schema::getColumnListing('subregions');
-        $cities = Schema::getColumnListing('cities');
-
-        return response()->json([
-            'countries' => $countries,
-            'regions' => $regions,
-            'states' => $states,
-            'subregions' => $subregions,
-            'cities' => $cities
-        ]);
-    }    
+    }  
 }

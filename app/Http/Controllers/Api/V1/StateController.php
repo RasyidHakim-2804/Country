@@ -9,9 +9,17 @@ use Illuminate\Http\Request;
 
 class StateController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $states = State::paginate(25);
+        if ($request->has('country_id')) {
+
+            $id     = $request->country_id;
+            $states = State::where('country_id', $id)->orderBy('name')->paginate(25);
+            $states->appends(['country_id' => $id]);
+
+        } else {
+            $states = State::paginate(25);
+        }
         
         return StateResource::collection($states);
     }

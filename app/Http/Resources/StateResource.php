@@ -23,7 +23,7 @@ class StateResource extends JsonResource
             'iso2'          =>  $this->iso2,
             'type'          =>  $this->type,
             'latitude'      =>  $this->latitude,
-            'longitude'     =>  $this->longtitude,
+            'longitude'     =>  $this->longitude,
             'created_at'    =>  $this->created_at,
             'updated_at'    =>  $this->updated_at,
             'flag'          =>  $this->flag,

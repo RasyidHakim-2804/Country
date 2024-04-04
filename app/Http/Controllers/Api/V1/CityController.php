@@ -9,9 +9,17 @@ use App\Models\City;
 
 class CityController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $cities = City::paginate(25);
+        if ($request->has('state_id')) {
+
+            $id     = $request->state_id;
+            $cities = City::where('state_id', $id)->orderBy('name')->paginate(25);
+            $cities->appends(['state_id' => $id]);
+            
+        } else {
+            $cities = City::paginate(25);
+        }
 
         return CityResource::collection($cities);
     }

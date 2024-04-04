@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [CountryController::class, 'index']);
+Route::get('/country', [CountryController::class, 'index']);
 Route::get('/states', [StateController::class, 'index']);
 Route::get('/cities', [CityController::class, 'index']);
 Route::get('/regions', [RegionController::class, 'index']);
