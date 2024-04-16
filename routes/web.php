@@ -18,11 +18,3 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', '/country');
-Route::get('/country', [CountryController::class, 'index'])->name('index');
-Route::get('/states', [StateController::class, 'index']);
-Route::get('/cities', [CityController::class, 'index']);
-Route::get('/regions', [RegionController::class, 'index']);
-Route::get('/subregions', [SubregionController::class, 'index']);
-
-Route::get('/kolom', [CountryController::class, 'dummy']);

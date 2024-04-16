@@ -11,7 +11,7 @@ class SubregionController extends Controller
 {
     public function index()
     {
-        $subregions = Subregion::paginate(25);
+        $subregions = Subregion::all();
         
         return SubregionResource::collection($subregions);
     }
