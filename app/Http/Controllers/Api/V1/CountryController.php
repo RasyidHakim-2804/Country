@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CountryResource;
+use App\Http\Resources\StateResource;
 use App\Models\Country;
+use App\Models\State;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Schema;
 
 class CountryController extends Controller
 {
@@ -16,14 +16,16 @@ class CountryController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->has('name')) {
+        if ($request->id) {
 
-            $name      = $request->name;
-            $countries = Country::where('name','like', "%$name%")->paginate(25);
-        } else {
-            $countries = $countries  = Country::paginate(25);
-        }
+            $country    = Country::find($request->id);
+            
+            return new CountryResource($country);
+            
+        } 
+        $countries = $countries  = Country::all();
 
         return CountryResource::collection($countries);
-    }  
+    }
+    
 }

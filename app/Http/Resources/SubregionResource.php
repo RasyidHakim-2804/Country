@@ -17,7 +17,7 @@ class SubregionResource extends JsonResource
         return [
             'id'                =>  $this->id,
             'name'              =>  $this->name,
-            'translations'      =>  json_decode($this->translations),
+            'translations'      =>  json_decode(stripslashes($this->translations)),
             'region_id'         =>  $this->region_id,
             'created_at'        =>  $this->created_at,
             'updated_at'        =>  $this->updated_at,

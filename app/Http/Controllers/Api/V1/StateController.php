@@ -14,9 +14,8 @@ class StateController extends Controller
         if ($request->has('country_id')) {
 
             $id     = $request->country_id;
-            $states = State::where('country_id', $id)->orderBy('name')->paginate(25);
-            $states->appends(['country_id' => $id]);
-
+            $states = State::where('country_id', $id)->orderBy('name')->get();
+            
         } else {
             $states = State::paginate(25);
         }

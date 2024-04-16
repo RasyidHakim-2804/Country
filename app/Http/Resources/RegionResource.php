@@ -17,7 +17,7 @@ class RegionResource extends JsonResource
         return [
             'id'               => $this->id,
             'name'             => $this->name,
-            'translations'     => json_decode($this->translations),
+            'translations'     => json_decode(stripslashes($this->translations)),
             'created_at'       => $this->created_at,
             'updated_at'       => $this->updated_at,
             'flag'             => $this->flag,

@@ -14,8 +14,13 @@ class CityController extends Controller
         if ($request->has('state_id')) {
 
             $id     = $request->state_id;
-            $cities = City::where('state_id', $id)->orderBy('name')->paginate(25);
-            $cities->appends(['state_id' => $id]);
+            $cities = City::where('state_id', $id)->orderBy('name')->get();
+            
+        } elseif ($request->has('country_id')){
+            
+            $id     = $request->country_id;
+            $cities = City::where('country_id', $id)->orderBy('name')->paginate(25);
+            $cities->appends(['country_id' => $id]);
             
         } else {
             $cities = City::paginate(25);
